@@ -1,4 +1,4 @@
-import { ADD_FEATURE } from '../actions'
+import { ADD_FEATURE, REMOVE_FEATURE } from '../actions'
 
 const initialState = {
     additionalPrice: 0,
@@ -30,7 +30,11 @@ export default function rootReducer(state=initialState, action) {
                 }
             }
 
-        
+          case REMOVE_FEATURE:
+            return {
+              ...state,
+              additionalPrice: state.additionalPrice - action.payload.price
+            }
         
         default:
             return state
