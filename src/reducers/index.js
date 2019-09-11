@@ -31,9 +31,16 @@ export default function rootReducer(state=initialState, action) {
             }
 
           case REMOVE_FEATURE:
+            const featureToRemove = state.car.features.find(feature => 
+              feature.id === action.payload.id 
+            )
             return {
               ...state,
-              additionalPrice: state.additionalPrice - action.payload.price
+              additionalPrice: state.additionalPrice - action.payload.price,
+              car: {
+                ...state.car,
+                features: state.car.features.filter(feature => feature !== featureToRemove)
+              }
             }
         
         default:
