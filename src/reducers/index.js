@@ -23,7 +23,11 @@ export default function rootReducer(state=initialState, action) {
         case BUY_ITEM: 
             return {
                 ...state,
-                additionalPrice: state.additionalPrice + action.payload.price
+                additionalPrice: state.additionalPrice + action.payload.price,
+                car: {
+                    ...state.car,
+                    features: state.car.features.concat(action.payload)
+                }
             }
         
         default:
