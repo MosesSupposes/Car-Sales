@@ -1,13 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addFeature } from '../actions'
 
-const AdditionalFeature = props => {
+export default function AdditionalFeature (props) {
+  const dispatch = useDispatch()
+
   return (
     <li>
       <button 
         className="button"
-        onClick={() => props.addFeature(props.feature)}
+        onClick={() => dispatch(addFeature(props.feature))}
       >
         Add
       </button>
@@ -15,14 +17,3 @@ const AdditionalFeature = props => {
     </li>
   );
 };
-
-function mapDispatchToProps() {
-  return {
-    addFeature
-  }
-}
-
-export default connect(
-  null, 
-  mapDispatchToProps()
-)(AdditionalFeature);

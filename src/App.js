@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
@@ -7,27 +7,28 @@ import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 
 
-const App = (props) => {
+export default function App(props) {
+  const { 
+    car, 
+    store, 
+    additionalPrice 
+  } = useSelector(state => ({ 
+    car: state.car,
+    store: state.store,
+    additionalPrice: state.additionalPrice
+   }))
+  
   return (
     <div className="boxes">
       <div className="box">
-        <Header car={props.car} />
-        <AddedFeatures car={props.car} />
+        <Header car={car} />
+        <AddedFeatures car={car} />
       </div>
       <div className="box">
-        <AdditionalFeatures store={props.store} />
-        <Total car={props.car} additionalPrice={props.additionalPrice} />
+        <AdditionalFeatures store={store} />
+        <Total car={car} additionalPrice={additionalPrice} />
       </div>
     </div>
   );
 };
 
-function mapStateToProps({car, store, additionalPrice}) {
-  return {
-    car,
-    store,
-    additionalPrice
-  }
-}
-
-export default connect(mapStateToProps, {})(App);
