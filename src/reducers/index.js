@@ -1,4 +1,4 @@
-import { BUY_ITEM } from '../actions'
+import { ADD_FEATURE } from '../actions'
 
 const initialState = {
     additionalPrice: 0,
@@ -20,7 +20,7 @@ const initialState = {
 
 export default function rootReducer(state=initialState, action) {
     switch(action.type) {
-        case BUY_ITEM: 
+        case ADD_FEATURE: 
             return {
                 ...state,
                 additionalPrice: state.additionalPrice + action.payload.price,
@@ -29,6 +29,8 @@ export default function rootReducer(state=initialState, action) {
                     features: state.car.features.concat(action.payload)
                 }
             }
+
+        
         
         default:
             return state
